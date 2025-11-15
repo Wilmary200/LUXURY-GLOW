@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link type="text/css" rel="stylesheet" href="style.css"/>
+  </head>
+  <body>
+    <!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LUXURY GLOW - Morado Claro</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top bg-primary-light">
+        <div class="container">
+            <a class="navbar-brand text-dark" href="#"><i class="fas fa-shopping-cart"></i> ✨LUXURY GLOW✨</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <button class="btn btn-secondary-light" type="button" data-bs-toggle="offcanvas" data-bs-target="#cartOffcanvas" aria-controls="cartOffcanvas">
+                            <i class="fas fa-shopping-bag"></i> Carrito (<span id="cart-count">0</span>)
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container mt-5 pt-5">
+        <h1 class="text-center mb-4 text-primary-light-text">¡Explora Nuestros Productos!</h1>
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-4 g-4" id="products-container">
+            </div>
+    </main>
+    
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="cartOffcanvas" aria-labelledby="cartOffcanvasLabel">
+        <div class="offcanvas-header bg-primary-light text-dark">
+            <h5 class="offcanvas-title" id="cartOffcanvasLabel"><i class="fas fa-shopping-bag"></i> Tu Carrito de Compras</h5>
+            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+            <div id="cart-items-container">
+                </div>
+            <div class="mt-4 pt-3 border-top">
+                <h5>Total: <span id="cart-total" class="text-secondary-light-text fw-bold">$0.00</span></h5>
+                <button class="btn btn-secondary-light w-100 mt-2" id="checkout-btn" data-bs-toggle="modal" data-bs-target="#paymentModal" disabled>
+                    <i class="fas fa-credit-card"></i> Ir a pagar 💳
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="productModal" tabindex="-1" aria-labelledby="productModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header bg-primary-light text-dark">
+                    <h5 class="modal-title" id="productModalLabel">Detalles del Producto</h5>
+                    <button type="button" class="btn-close text-reset" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-5 text-center">
+                            <img id="modal-product-image" src="" class="img-fluid modal-img" alt="Imagen de Producto">
+                        </div>
+                        <div class="col-md-7">
+                            <h2 id="modal-product-title" class="text-primary-light-text"></h2>
+                            <ul class="list-group list-group-flush mb-3">
+                                <li class="list-group-item"><strong>Categoría:</strong> <span id="modal-product-category"></span></li>
+                                <li class="list-group-item"><strong>Descripción:</strong> <p id="modal-product-description"></p></li>
+                                <li class="list-group-item fs-4 fw-bold text-secondary-light-text">Precio: <span id="modal-product-price"></span></li>
+                            </ul>
+                            
+                            <div class="input-group mb-3">
+                                <label class="input-group-text">Cantidad:</label>
+                                <input type="number" id="modal-product-quantity" class="form-control" value="1" min="1">
+                            </div>
+
+                            <button class="btn btn-secondary-light w-100" id="add-to-cart-modal-btn">
+                                <i class="fas fa-cart-plus"></i> Agregar al Carrito 🛒
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="paymentModal" tabindex="-1" aria-labelledby="paymentModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header bg-secondary-light text-dark">
+                    <h5 class="modal-title" id="paymentModalLabel"><i class="fas fa-credit-card"></i> Pasarela de Pago (Simulada)</h5>
+                    <button type="button" class="btn-close text-reset" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p class="text-center fw-bold">Total a Pagar: <span id="payment-total" class="text-secondary-light-text">$0.00</span></p>
+                    <form id="payment-form">
+                        <div class="mb-3">
+                            <label for="fullName" class="form-label">Nombre Completo</label>
+                            <input type="text" class="form-control" id="fullName" required placeholder="Ej: Juan Pérez">
+                        </div>
+                        <div class="mb-3">
+                            <label for="cardNumber" class="form-label">Número de Tarjeta</label>
+                            <input type="text" class="form-control" id="cardNumber" required pattern="[0-9]{16}" placeholder="16 dígitos">
+                        </div>
+                        <div class="row">
+                            <div class="col-6 mb-3">
+                                <label for="expiryDate" class="form-label">Fecha Vencimiento (MM/AA)</label>
+                                <input type="text" class="form-control" id="expiryDate" required pattern="(0[1-9]|1[0-2])\/[0-9]{2}" placeholder="Ej: 12/26">
+                            </div>
+                            <div class="col-6 mb-3">
+                                <label for="securityCode" class="form-label">Código de Seguridad (CVV)</label>
+                                <input type="text" class="form-control" id="securityCode" required pattern="[0-9]{3,4}" placeholder="3 o 4 dígitos">
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary-light w-100 mt-3"><i class="fas fa-check-circle"></i> Pagar Ahora ✅</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="bg-dark text-white pt-5 pb-4 mt-5">
+        <div class="container text-center text-md-start">
+            <div class="row text-center text-md-start">
+                
+                <div class="col-md-3 col-lg-3 col-xl-3 mx-auto mt-3">
+                    <h5 class="text-uppercase mb-4 font-weight-bold text-primary-light-text">
+                        <i class="fas fa-shopping-cart me-2"></i> ShopMaster
+                    </h5>
+                    <p>La tienda online ficticia líder en productos de moda y electrónica. Compra con confianza y recibe tus productos en tiempo récord.</p>
+                </div>
+
+                <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mt-3">
+                    <h5 class="text-uppercase mb-4 font-weight-bold text-secondary-light-text">Productos</h5>
+                    <p><a href="#" class="text-white" style="text-decoration: none;">Electrónica</a></p>
+                    <p><a href="#" class="text-white" style="text-decoration: none;">Joyas</a></p>
+                    <p><a href="#" class="text-white" style="text-decoration: none;">Ropa de Hombre</a></p>
+                    <p><a href="#" class="text-white" style="text-decoration: none;">Ropa de Mujer</a></p>
+                </div>
+
+                <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mt-3">
+                    <h5 class="text-uppercase mb-4 font-weight-bold text-secondary-light-text">Legal & Ayuda</h5>
+                    <p><a href="#" class="text-white" style="text-decoration: none;">Mi Cuenta</a></p>
+                    <p><a href="#" class="text-white" style="text-decoration: none;">Política de Privacidad</a></p>
+                    <p><a href="#" class="text-white" style="text-decoration: none;">Términos y Condiciones</a></p>
+                    <p><a href="#" class="text-white" style="text-decoration: none;">Contáctanos</a></p>
+                </div>
+                
+                <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mt-3">
+                    <h5 class="text-uppercase mb-4 font-weight-bold text-primary-light-text">Contacto</h5>
+                    <p><i class="fas fa-home me-3"></i> Santo Domingo, R.D.</p>
+                    <p><i class="fas fa-envelope me-3"></i> info@shopmaster.com</p>
+                    <p><i class="fas fa-phone me-3"></i> +1 809 555 1234</p>
+                </div>
+
+            </div>
+            
+            <hr class="mb-4">
+
+            <div class="row align-items-center">
+                <div class="col-md-7 col-lg-8">
+                    <p class="text-center text-md-start">© 2025 Copyright: 
+                        <a href="#" style="text-decoration: none;">
+                            <strong class="text-secondary-light-text">LUXURY GLOW✨ S.R.L.</strong>
+                        </a>
+                    </p>
+                </div>
+                <div class="col-md-5 col-lg-4">
+                    <div class="text-center text-md-end">
+                        <ul class="list-unstyled list-inline">
+                            <li class="list-inline-item">
+                                <a href="#" class="btn-floating btn-sm text-white" style="font-size: 23px;"><i class="fab fa-facebook-f"></i></a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a href="#" class="btn-floating btn-sm text-white" style="font-size: 23px;"><i class="fab fa-twitter"></i></a>
+                            </li>
+                            <li class="list-inline-item">
+                                <a href="#" class="btn-floating btn-sm text-white" style="font-size: 23px;"><i class="fab fa-instagram"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="script.js"></script>
+
+</body>
+</html>
+    <script type="module" src="script.js"></script>
+  </body>
+</html>

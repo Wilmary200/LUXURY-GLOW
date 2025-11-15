@@ -1,0 +1,129 @@
+/* Paleta de Colores MORADO CLARO:
+    💜 Primario (Lavanda/Acción): #A084E8
+    💖 Secundario (Malva Suave/Compra): #D0BFFF
+    🧾 Fondo: Blanco (#FFFFFF)
+    🖤 Texto: Gris oscuro (#343A40)
+*/
+
+body {
+    font-family: 'Open Sans', 'Roboto', sans-serif;
+    color: #343A40; 
+    background-color: #FFFFFF; 
+}
+
+/* --- CLASES DE COLOR PERSONALIZADAS (Morado Claro) --- */
+
+/* Fondo primario (Lavanda) para Navbar, Modales principales */
+.bg-primary-light {
+    background-color: #A084E8 !important;
+}
+
+/* Color de texto primario */
+.text-primary-light-text {
+    color: #A084E8 !important;
+}
+
+/* Botón y fondo primario (Acción) */
+.btn-primary-light {
+    background-color: #A084E8;
+    border-color: #A084E8;
+    color: white !important;
+}
+.btn-primary-light:hover {
+    background-color: #896ed6;
+    border-color: #896ed6;
+}
+
+/* Fondo secundario (Malva Suave) para Modal de Pago */
+.bg-secondary-light {
+    background-color: #D0BFFF !important;
+}
+
+/* Color de texto secundario (Precios, Totales) */
+.text-secondary-light-text {
+    color: #D0BFFF !important;
+}
+
+/* Botón y fondo secundario (Compra) */
+.btn-secondary-light {
+    background-color: #D0BFFF;
+    border-color: #D0BFFF;
+    color: #343A40 !important; /* Texto oscuro para contraste */
+    font-weight: bold;
+}
+.btn-secondary-light:hover {
+    background-color: #b7a4e6;
+    border-color: #b7a4e6;
+}
+
+/* Botón deshabilitado (más pálido) */
+#checkout-btn:disabled {
+    background-color: #e4d7ff !important;
+    border-color: #e4d7ff !important;
+    color: #6c757d !important;
+}
+
+/* --- ESTILOS DE COMPONENTES (Mantenidos) --- */
+
+.product-card {
+    transition: transform 0.3s ease-in-out;
+    box-shadow: 0 4px 8px rgba(0,0,0,.05);
+    height: 100%; 
+    display: flex;
+    flex-direction: column;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0,0,0,.1);
+}
+
+.card-img-container {
+    height: 200px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f8f9fa;
+}
+
+.card-img-top {
+    max-height: 100%;
+    width: auto;
+    object-fit: contain;
+}
+
+.card-body {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.card-text {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    flex-grow: 1;
+}
+
+.modal-img {
+    max-height: 300px;
+    width: auto;
+    object-fit: contain;
+}
+
+.cart-item {
+    padding: 10px 0;
+    border-bottom: 1px solid #eee;
+    display: flex;
+}
+
+.cart-item-img {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+    margin-right: 10px;
+}
